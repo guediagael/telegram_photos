@@ -7,7 +7,7 @@ class ButtonLoginRegistrationInitial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: const [Icon(Icons.send), Text("Login/Register")],
+      children: const [Icon(Icons.send), Text("Login/Register")]
     );
   }
 }

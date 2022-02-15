@@ -2,8 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:t_photos/rich_button/rich_button_builder.dart';
 import 'package:t_photos/rich_button/rich_button_state_manager.dart';
-import 'package:t_photos/widgets/button_login_loading.dart';
-import 'package:t_photos/widgets/button_login_registration_initial.dart';
+import 'package:t_photos/views/main.dart';
+import 'package:t_photos/widgets/buttons/button_login_loading.dart';
+import 'package:t_photos/widgets/buttons/button_login_registration_initial.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelComeScreenState extends State<WelcomeScreen> {
-  late RichButtonState _buttonState ;
+  late RichButtonState _buttonState;
 
   @override
   void initState() {
@@ -30,7 +31,6 @@ class _WelComeScreenState extends State<WelcomeScreen> {
           const Text(
               "Welcome To T-Photo, we'll help you to back up your photos"),
           Container(
-
             child: RichButton(
                 buttonFacesBuilder: RichButtonBuilder(
                   initialStateWidget: const ButtonLoginRegistrationInitial(),
@@ -43,8 +43,8 @@ class _WelComeScreenState extends State<WelcomeScreen> {
                       if (_buttonState == RichButtonState.initial) {
                         _buttonState = RichButtonState.loading;
                       } else if (_buttonState == RichButtonState.loading) {
-                        _buttonState = RichButtonState.initial;
-
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (ctx) => MainScreen()));
                       }
                     });
                   },

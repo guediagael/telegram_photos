@@ -6,7 +6,9 @@ class RichButton extends InheritedWidget {
   final RichButtonState newState;
 
   const RichButton(
-      {Key? key, required Widget buttonFacesBuilder, this.newState = RichButtonState.initial})
+      {Key? key,
+      required Widget buttonFacesBuilder,
+      this.newState = RichButtonState.initial})
       : super(key: key, child: buttonFacesBuilder);
 
   @override
@@ -15,7 +17,6 @@ class RichButton extends InheritedWidget {
   }
 
   static RichButton? of(BuildContext context) {
-    return context
-        .dependOnInheritedWidgetOfExactType<RichButton>();
+    return context.dependOnInheritedWidgetOfExactType<RichButton>();
   }
 }
