@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_photos/ui_models/dialog_item_choice.dart';
 import 'package:t_photos/views/search/search.dart';
 import 'package:t_photos/views/settings/settings.dart';
@@ -14,11 +15,11 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late int _currentTab;
+  // late int _currentTab;
 
   @override
   void initState() {
-    _currentTab = 0;
+    // _currentTab = 0;
     super.initState();
   }
 

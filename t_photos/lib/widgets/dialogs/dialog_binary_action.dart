@@ -5,13 +5,14 @@ class DialogBinaryAction extends StatelessWidget {
   final String alertTitle;
   final Function onPositivePressed;
   final Function onNegativePressed;
+  final Color? titleColor;
 
   const DialogBinaryAction(
       {Key? key,
       required this.alertMessage,
       required this.alertTitle,
       required this.onPositivePressed,
-      required this.onNegativePressed})
+      required this.onNegativePressed, this.titleColor})
       : super(key: key);
 
   @override
@@ -19,6 +20,7 @@ class DialogBinaryAction extends StatelessWidget {
     return AlertDialog(
       title: Text(
         alertTitle,
+        style: TextStyle(color: titleColor),
       ),
       content: Text(alertMessage),
       actions: [

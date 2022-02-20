@@ -32,14 +32,14 @@ class SnackBarShortErrorState extends CommonState {
 }
 
 class DialogLongErrorState extends CommonState {
-  final String errorMessage, title, positiveButtonLabel;
+  final String? errorMessage, title, positiveButtonLabel;
   final bool closeAfterTap, hideCancelIcon;
   final Function onPositiveTap;
 
   DialogLongErrorState(
-      {required this.errorMessage,
-      required this.title,
-      required this.positiveButtonLabel,
+      { this.errorMessage,
+       this.title,
+       this.positiveButtonLabel,
       this.closeAfterTap = true,
       this.hideCancelIcon = true,
       required this.onPositiveTap})

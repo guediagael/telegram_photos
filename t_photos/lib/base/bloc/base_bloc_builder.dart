@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_photos/base/bloc/base_event.dart';
 import 'package:t_photos/base/bloc/base_state.dart';
-import 'package:t_photos/base/bloc/data_bloc.dart';
+import 'package:t_photos/base/bloc/base_data_bloc.dart';
 
 class BaseBlocBuilder<B extends BaseBloc>
     extends BlocBuilder<BaseBloc, BaseState> {
@@ -26,12 +26,6 @@ class BaseBlocBuilder<B extends BaseBloc>
   @override
   Widget build(BuildContext context, BaseState state) {
     return builder(context, state);
-  }
-
-  static bool isCommonState(BaseState state) {
-    return (state is SendErrorState ||
-        state is SnackBarShortErrorState ||
-        state is SendToLoginState || state is DialogLongErrorState);
   }
 }
 
