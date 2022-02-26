@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:t_photos/base/bloc/base_event.dart';
 import 'package:t_photos/base/bloc/base_state.dart';
 import 'package:t_photos/base/bloc/base_data_bloc.dart';
 

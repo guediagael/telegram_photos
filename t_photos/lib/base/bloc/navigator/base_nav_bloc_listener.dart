@@ -14,12 +14,17 @@ class BaseNavigatorBlocListener<E extends BaseEvent,
   final BaseNavigatorBloc bloc;
   final Widget? child;
 
-  BaseNavigatorBlocListener({Key? key, required this.bloc, this.child})
+  BaseNavigatorBlocListener(
+      {Key? key,
+      required this.bloc,
+      this.child,
+      required BlocWidgetListener<S> navListener})
       : super(
             key: key,
             bloc: bloc,
             child: child,
             listener: (context, state) {
+              debugPrint("new State ($state) detected in $context");
               if (state is BaseNavigatorStatePop) {
                 Navigator.pop(context);
               } else if (state is BaseNavigatorStateShowSnackBar) {
@@ -66,6 +71,8 @@ class BaseNavigatorBlocListener<E extends BaseEvent,
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (ctx) => const WelcomeScreen()),
                     (route) => false);
+              } else {
+                navListener(context, state);
               }
             });
 
