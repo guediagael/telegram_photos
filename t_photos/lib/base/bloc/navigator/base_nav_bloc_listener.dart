@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:t_photos/base/bloc/base_event.dart';
 import 'package:t_photos/base/bloc/navigator/base_nav_state.dart';
 import 'package:t_photos/base/bloc/navigator/base_navigator_bloc.dart';
 import 'package:t_photos/copyable_mixin.dart';
@@ -9,9 +8,10 @@ import 'package:t_photos/views/welcome.dart';
 import 'package:t_photos/widgets/dialogs/dialog_alert.dart';
 import 'package:t_photos/widgets/dialogs/dialog_binary_action.dart';
 
-class BaseNavigatorBlocListener<E extends BaseEvent,
+class BaseNavigatorBlocListener<B extends BaseNavigatorBloc,
     S extends BaseNavigatorState> extends BlocListener with CopyableWidget {
-  final BaseNavigatorBloc bloc;
+
+  final B bloc;
   final Widget? child;
 
   BaseNavigatorBlocListener(

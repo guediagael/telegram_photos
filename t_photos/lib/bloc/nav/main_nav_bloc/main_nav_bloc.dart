@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_photos/base/bloc/navigator/base_nav_state.dart';
 import 'package:t_photos/base/bloc/navigator/base_navigator_bloc.dart';
-import 'package:t_photos/views/main/nav_bloc/main_nav_event.dart';
-import 'package:t_photos/views/main/nav_bloc/main_nav_state.dart';
+import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_event.dart';
+import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_state.dart';
 
 class MainNavigatorBloc extends BaseNavigatorBloc {
   MainNavigatorBloc() : super(MainNavigatorStateShowTimeLine()) {
@@ -33,7 +33,7 @@ class MainNavigatorBloc extends BaseNavigatorBloc {
 
   void _onAddNew(MainNavigatorEventAddNew mainNavigatorEventAddNew,
       Emitter<BaseNavigatorState> emitter) {
-    emitter(MainNavigatorStateShowAddDialog());
+    emitter( MainNavigatorStateShowAddDialog());
   }
 
   void _onOpenGallery(

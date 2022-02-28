@@ -16,7 +16,7 @@ class MainNavigatorStateOpenGallery extends MainNavigatorState {
 }
 
 class MainNavigatorStateShowAddDialog extends MainNavigatorState {
-  MainNavigatorStateShowAddDialog() : super([]);
+   MainNavigatorStateShowAddDialog() : super( []);
 }
 
 class MainNavigatorStateShowTimeLine extends MainNavigatorState {
