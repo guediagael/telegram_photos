@@ -6,13 +6,13 @@ import 'package:t_photos/base/bloc/navigator/base_nav_bloc_listener.dart';
 import 'package:t_photos/base/bloc/navigator/base_nav_event.dart';
 import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_bloc.dart';
 import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_event.dart';
+import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_state.dart';
 import 'package:t_photos/ui_models/dialog_item_choice.dart';
 import 'package:t_photos/views/search/search.dart';
 import 'package:t_photos/views/settings/settings.dart';
 import 'package:t_photos/views/timeline/timeline.dart';
 import 'package:t_photos/widgets/dialogs/dialog_choice.dart';
 
-import '../../bloc/nav/main_nav_bloc/main_nav_state.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
