@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_photos/base/bloc/navigator/base_nav_state.dart';
 import 'package:t_photos/base/bloc/navigator/base_navigator_bloc.dart';
 import 'package:t_photos/copyable_mixin.dart';
-import 'package:t_photos/views/loading.dart';
-import 'package:t_photos/views/welcome.dart';
-import 'package:t_photos/widgets/dialogs/dialog_alert.dart';
-import 'package:t_photos/widgets/dialogs/dialog_binary_action.dart';
+import 'package:t_photos/ui/views/loading.dart';
+import 'package:t_photos/ui/views/welcome/welcome.dart';
+import 'package:t_photos/ui/widgets/dialogs/dialog_alert.dart';
+import 'package:t_photos/ui/widgets/dialogs/dialog_binary_action.dart';
+
 
 class BaseNavigatorBlocListener<B extends BaseNavigatorBloc,
     S extends BaseNavigatorState> extends BlocListener with CopyableWidget {

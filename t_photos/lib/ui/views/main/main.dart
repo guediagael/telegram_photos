@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_photos/base/bloc/navigator/base_nav_bloc_builder.dart';
@@ -7,12 +6,11 @@ import 'package:t_photos/base/bloc/navigator/base_nav_event.dart';
 import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_bloc.dart';
 import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_event.dart';
 import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_state.dart';
+import 'package:t_photos/ui/views/search/search.dart';
+import 'package:t_photos/ui/views/settings/settings.dart';
+import 'package:t_photos/ui/views/timeline/timeline.dart';
+import 'package:t_photos/ui/widgets/dialogs/dialog_choice.dart';
 import 'package:t_photos/ui_models/dialog_item_choice.dart';
-import 'package:t_photos/views/search/search.dart';
-import 'package:t_photos/views/settings/settings.dart';
-import 'package:t_photos/views/timeline/timeline.dart';
-import 'package:t_photos/widgets/dialogs/dialog_choice.dart';
-
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -22,12 +20,10 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  // late int _currentTab;
   late final MainNavigatorBloc _mainNavigatorBloc;
 
   @override
   void initState() {
-    // _currentTab = 0;
     super.initState();
   }
 
@@ -102,30 +98,19 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _showSettings() {
-    debugPrint("Showing settings");
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (ctx) => const SettingsScreen()));
-    // showModalBottomSheet(
-    //     context: context,
-    //     builder: (ctx) {
-    //       return const SettingsScreen();
-    //     });
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => SettingsScreen.buildSettingScreen(context)));
   }
 
   void _showAddDialog() {
-    debugPrint("Showing add dialog");
     showDialog(
         context: context,
         builder: (ctx) => DialogChoice(choices: [
               DialogItemChoice("Gallery", () {
-                if (kDebugMode) {
-                  print("Show gallery");
-                }
+                debugPrint("Show gallery");
               }),
               DialogItemChoice("Camera", () {
-                if (kDebugMode) {
-                  print("Show camera");
-                }
+                debugPrint("Show camera");
               }),
             ], title: "Upload picture from"));
   }

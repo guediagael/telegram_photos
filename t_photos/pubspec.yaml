@@ -40,6 +40,7 @@ dependencies:
   dio: ^4.0.4
   dio_cache_interceptor: ^3.2.5
   shared_preferences: ^2.0.13
+  provider: ^6.0.2
 
 dev_dependencies:
   flutter_test:

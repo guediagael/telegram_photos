@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:t_photos/base/bloc/base_event.dart';
+import 'package:t_photos/base/bloc/data/base_data_bloc.dart';
+import 'package:t_photos/base/bloc/data/base_event.dart';
+import 'package:t_photos/base/bloc/data/base_state.dart';
 import 'package:t_photos/base/bloc/navigator/base_nav_event.dart';
 import 'package:t_photos/base/bloc/navigator/base_navigator_bloc.dart';
-import 'package:t_photos/base/bloc/base_state.dart';
-import 'package:t_photos/base/bloc/base_data_bloc.dart';
 import 'package:t_photos/copyable_mixin.dart';
 
 class BaseBlocListener<E extends BaseEvent, S extends BaseState>

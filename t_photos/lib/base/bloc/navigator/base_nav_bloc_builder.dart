@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_photos/base/bloc/navigator/base_nav_state.dart';
 import 'package:t_photos/base/bloc/navigator/base_navigator_bloc.dart';
 
-class BaseNavigatorBlocBuilder<B extends BaseNavigatorBloc>
+class BaseNavigatorBlocBuilder
     extends BlocBuilder<BaseNavigatorBloc, BaseNavigatorState> {
-  final B bloc;
+  final BaseNavigatorBloc bloc;
   final BlocBuilderCondition<BaseNavigatorState> buildWhenCondition;
   final BlocWidgetBuilder<BaseNavigatorState> navigatorBlocWidgetBuilder;
 

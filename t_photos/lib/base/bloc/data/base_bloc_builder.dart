@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:t_photos/base/bloc/base_state.dart';
-import 'package:t_photos/base/bloc/base_data_bloc.dart';
+import 'package:t_photos/base/bloc/data/base_data_bloc.dart';
+import 'package:t_photos/base/bloc/data/base_state.dart';
 
-class BaseBlocBuilder<B extends BaseBloc>
+class BaseBlocBuilder
     extends BlocBuilder<BaseBloc, BaseState> {
-  final B bloc;
+  final BaseBloc bloc;
   final BlocBuilderCondition<BaseState> buildWhenCondition;
   final BlocWidgetBuilder<BaseState> builder;
   final Function? onRetry;

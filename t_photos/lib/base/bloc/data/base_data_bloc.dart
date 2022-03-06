@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:t_photos/base/bloc/base_event.dart';
-import 'package:t_photos/base/bloc/base_state.dart';
+import 'package:t_photos/base/bloc/data/base_event.dart';
+import 'package:t_photos/base/bloc/data/base_state.dart';
 import 'package:t_photos/data/local/preferences/preferences_id_api.dart';
 
-abstract class BaseBloc<E extends BaseEvent, S extends BaseState>
+abstract class BaseBloc
     extends Bloc<BaseEvent, BaseState> {
   var closed = false;
   BaseEvent? currentEvent; //TODO: remove code smell
   final PreferencesIdApi? preferencesIdApi;
 
-  BaseBloc(S initialState, [this.preferencesIdApi]) : super(initialState) {
+  BaseBloc(BaseState initialState, [this.preferencesIdApi]) : super(initialState) {
     on<CommonEvent>(_commonEvent);
     on<ShowDialogEvent>(_onShowDialogEvent);
     on<PromptAuthEvent>(_onPromptAuthEvent);
@@ -21,7 +21,7 @@ abstract class BaseBloc<E extends BaseEvent, S extends BaseState>
 
   void _commonEvent(CommonEvent event, Emitter<BaseState> baseEventEmitter) {
     currentEvent = event;
-    baseEventEmitter(mapBaseEventToBaseState(event));
+    //TODO:
   }
 
   void _onShowDialogEvent(
@@ -63,9 +63,6 @@ abstract class BaseBloc<E extends BaseEvent, S extends BaseState>
         });
     screenErrorStateEmitter(state);
   }
-
-  @mustCallSuper
-  S mapBaseEventToBaseState(CommonEvent event);
 
   @override
   @mustCallSuper
