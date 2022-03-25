@@ -5,13 +5,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 class PhotoSearchWidget extends StatelessWidget {
   final PhotoListItem photoListItem;
 
-  const PhotoSearchWidget({Key? key, required this.photoListItem})
+  const PhotoSearchWidget({required Key key, required this.photoListItem})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Hero(
-        tag: photoListItem.hashCode,
+        tag: photoListItem.toString(),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -28,7 +28,7 @@ class PhotoSearchWidget extends StatelessWidget {
               ),
               placeholder: (context, url) => const CircularProgressIndicator(),
               errorWidget: (context, url, error) => const Icon(Icons.error),
-            )
+            ),
           ],
         ));
   }
