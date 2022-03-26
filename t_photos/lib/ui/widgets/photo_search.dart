@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 class PhotoSearchWidget extends StatelessWidget {
   final PhotoListItem photoListItem;
 
-  const PhotoSearchWidget({required Key key, required this.photoListItem})
+  const PhotoSearchWidget({Key? key, required this.photoListItem})
       : super(key: key);
 
   @override

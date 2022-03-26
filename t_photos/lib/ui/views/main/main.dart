@@ -67,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
             body: IndexedStack(
               index: (navState is MainNavigatorStateShowTimeLine) ? 0 : 1,
-              children: [TimelineScreen(), SearchScreen()],
+              children: [TimelineScreen.buildTimelineScreen(context), SearchScreen()],
             ),
             // body: Route(),
             bottomNavigationBar: BottomNavigationBar(

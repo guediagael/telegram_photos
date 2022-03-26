@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_photos/base/bloc/data/base_data_bloc.dart';
-import 'package:t_photos/base/bloc/data/base_event.dart';
 import 'package:t_photos/base/bloc/data/base_state.dart';
 import 'package:t_photos/bloc/data/settings/settings.dart';
 import 'package:t_photos/bloc/data/settings/settings_event.dart';

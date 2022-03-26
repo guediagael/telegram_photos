@@ -15,8 +15,8 @@ class BaseBlocListener<E extends BaseEvent, S extends BaseState>
   BaseBlocListener(
       {Key? key,
       required this.bloc,
-      required BlocWidgetListener<S> listener,
       required BaseNavigatorBloc navigatorBloc,
+      required BlocWidgetListener<S> listener,
       this.child})
       : super(
             key: key,

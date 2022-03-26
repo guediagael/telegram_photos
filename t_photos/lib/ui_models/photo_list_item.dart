@@ -7,13 +7,15 @@ class PhotoListItem {
   final DateTime date;
   final StringList? tags;
   final double? latitude, longitude;
+  final bool isSelected;
 
   PhotoListItem(
       {required this.uri,
       required this.date,
       this.tags,
       this.longitude,
-      this.latitude})
+      this.latitude,
+      this.isSelected = false})
       : assert((latitude == null && longitude == null) ||
             (longitude != null && latitude != null));
 
@@ -36,27 +38,6 @@ class PhotoListItem {
       latitude.hashCode ^
       longitude.hashCode;
 
-  static Map<String,List<PhotoListItem>> generateMockList() {
-    DateTime start = DateTime.now().subtract(const Duration(days: 4));
-    DateTime end = DateTime.now();
-
-    final groupedItems = <String,List<PhotoListItem>>{};
-    var dayDiff = end.difference(start).inDays;
-    while (dayDiff > 0) {
-      final items = <PhotoListItem>[];
-      final date = DateTime.now().add(Duration(days: dayDiff));
-      for (int i=0; i<5;i++) {
-        var item = PhotoListItem(
-            uri: "${date.toString()}$i${Random(3).nextDouble()}randomuri${Random(2).nextInt(10)}",
-            date: date);
-        items.add(item);
-      }
-      groupedItems["${date.year}/${date.month}/${date.day}"] = items;
-
-      dayDiff--;
-    }
-    return groupedItems;
-  }
 
   @override
   String toString() {

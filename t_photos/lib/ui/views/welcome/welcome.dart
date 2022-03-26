@@ -121,9 +121,10 @@ class _WelComeScreenState extends State<WelcomeScreen> {
   void _goToMainScreen(DataManagerApi dataManagerApi) {
     final mainScreen = Provider.value(
         value: Provider<DataManagerApi>.value(value: dataManagerApi),
-        child: MultiBlocProvider(providers: [
-          BlocProvider(create: (_) => MainNavigatorBloc())
-        ], child: const MainScreen()));
-    Navigator.push(context, MaterialPageRoute(builder: (ctx) => mainScreen));
+        child: MultiBlocProvider(
+            providers: [BlocProvider(create: (_) => MainNavigatorBloc())],
+            child: const MainScreen()));
+    Navigator.pushAndRemoveUntil(
+        context, MaterialPageRoute(builder: (ctx) => mainScreen), (_) => false);
   }
 }
