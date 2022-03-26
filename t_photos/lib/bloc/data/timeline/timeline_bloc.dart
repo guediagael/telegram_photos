@@ -15,6 +15,7 @@ class TimelineBloc extends BaseBloc {
     on<TimelineEventLoad>(_loadTimeline);
     on<TimelineEventDeletePicture>(_deletePicture);
     on<TimelineEventOnItemLongPress>(_imagesSelected);
+    on<TimelineEventOnCancelSelections>(_onCancelSelections);
   }
 
   void _loadTimeline(TimelineEventLoad eventLoad, Emitter<BaseState> emitter) {
@@ -31,7 +32,7 @@ class TimelineBloc extends BaseBloc {
     for (var key in oldGroupedList.keys) {
       var oldList = oldGroupedList[key];
       var newList = oldList!.where((element) =>
-      !eventDeletePicture.photoItemsToDelete.contains(element));
+          !eventDeletePicture.photoItemsToDelete.contains(element));
       newGroupedList[key] = newList.toList(growable: false);
     }
 
@@ -45,14 +46,15 @@ class TimelineBloc extends BaseBloc {
       Emitter<BaseState> emitter) {
     final oldSelection = onItemLongPress.selectedPhotos;
     var newSelections = <PhotoListItem>[];
+    final newSelection = onItemLongPress.newSelection;
     if (oldSelection == null || oldSelection.isEmpty) {
-      newSelections.add(onItemLongPress.newSelection);
+      newSelections.add(newSelection);
     } else {
       newSelections.addAll(oldSelection);
       if (oldSelection.contains(onItemLongPress.newSelection)) {
         newSelections.remove(onItemLongPress.newSelection);
       } else {
-        newSelections.add(onItemLongPress.newSelection);
+        newSelections.add(newSelection);
       }
     }
     if (newSelections.isNotEmpty) {
@@ -60,10 +62,15 @@ class TimelineBloc extends BaseBloc {
           selectedPhotos: newSelections,
           loadedList: onItemLongPress.loadedList));
     } else {
-      DateTime lastDate = DateTime.now().subtract(const Duration(days: 5));
-      emitter(TimelineStateLoaded(
-          prevLastDate: lastDate, groupedPhotos: onItemLongPress.loadedList));
+      add(TimelineEventOnCancelSelections(onItemLongPress.loadedList));
     }
+  }
+
+  void _onCancelSelections(TimelineEventOnCancelSelections onCancelSelections,
+      Emitter<BaseState> emitter) {
+    DateTime lastDate = DateTime.now().subtract(const Duration(days: 5));
+    emitter(TimelineStateLoaded(
+        prevLastDate: lastDate, groupedPhotos: onCancelSelections.loadedList));
   }
 
   static Map<String, List<PhotoListItem>> generateMockList() {
@@ -71,17 +78,14 @@ class TimelineBloc extends BaseBloc {
     DateTime end = DateTime.now();
 
     final groupedItems = <String, List<PhotoListItem>>{};
-    var dayDiff = end
-        .difference(start)
-        .inDays;
+    var dayDiff = end.difference(start).inDays;
     while (dayDiff > 0) {
       final items = <PhotoListItem>[];
       final date = DateTime.now().add(Duration(days: dayDiff));
       for (int i = 0; i < 5; i++) {
         var item = PhotoListItem(
             uri:
-            "${date.toString()}$i${Random(3).nextDouble()}randomuri${Random(2)
-                .nextInt(10)}",
+                "${date.toString()}$i${Random(3).nextDouble()}randomuri${Random(2).nextInt(10)}",
             date: date);
         items.add(item);
       }

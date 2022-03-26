@@ -6,6 +6,7 @@ import 'package:t_photos/base/bloc/navigator/base_nav_event.dart';
 import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_bloc.dart';
 import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_event.dart';
 import 'package:t_photos/bloc/nav/main_nav_bloc/main_nav_state.dart';
+import 'package:t_photos/ui/views/main/bottom_app_bar.dart';
 import 'package:t_photos/ui/views/search/search.dart';
 import 'package:t_photos/ui/views/settings/settings.dart';
 import 'package:t_photos/ui/views/timeline/timeline.dart';
@@ -67,30 +68,26 @@ class _MainScreenState extends State<MainScreen> {
             ),
             body: IndexedStack(
               index: (navState is MainNavigatorStateShowTimeLine) ? 0 : 1,
-              children: [TimelineScreen.buildTimelineScreen(context), SearchScreen()],
-            ),
-            // body: Route(),
-            bottomNavigationBar: BottomNavigationBar(
-              items: const [
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.timer), label: "Timeline"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.search), label: "Search"),
+              children: [
+                TimelineScreen.buildTimelineScreen(context),
+                SearchScreen()
               ],
-              currentIndex:
-                  (navState is MainNavigatorStateShowTimeLine) ? 0 : 1,
-              onTap: (index) {
-                _mainNavigatorBloc.add((index == 0)
-                    ? const MainNavigatorEventShowTimeLine([])
-                    : const MainNavigatorEventShowSearch([]));
-              },
             ),
+            bottomNavigationBar: TphotosBottomAppBar(
+                currentIndex:
+                    (navState is MainNavigatorStateShowTimeLine) ? 0 : 1,
+                onTap: (index) {
+                  _mainNavigatorBloc.add((index == 0)
+                      ? const MainNavigatorEventShowTimeLine([])
+                      : const MainNavigatorEventShowSearch([]));
+                }),
             floatingActionButton: FloatingActionButton(
               child: const Icon(Icons.add),
               onPressed: () {
                 _mainNavigatorBloc.add(const MainNavigatorEventAddNew());
               },
             ),
+                floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           ));
         },
       ),

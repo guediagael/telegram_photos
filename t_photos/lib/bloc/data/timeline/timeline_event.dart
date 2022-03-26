@@ -28,6 +28,12 @@ class TimelineEventOnItemLongPress extends TimelineEvent {
   TimelineEventOnItemLongPress(
       {this.selectedPhotos,
       required this.loadedList,
-       required this.newSelection})
+      required this.newSelection})
       : super([selectedPhotos, loadedList]);
+}
+
+class TimelineEventOnCancelSelections extends TimelineEvent {
+  final Map<String, List<PhotoListItem>> loadedList;
+
+  TimelineEventOnCancelSelections(this.loadedList) : super([loadedList]);
 }

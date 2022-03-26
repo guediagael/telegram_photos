@@ -14,6 +14,7 @@ import 'package:t_photos/bloc/nav/timeline_nav_bloc/timeline_nav_bloc.dart';
 import 'package:t_photos/bloc/nav/timeline_nav_bloc/timeline_nav_state.dart';
 import 'package:t_photos/data/data_manager_impl.dart';
 import 'package:t_photos/ui/views/timeline/timeline_item.dart';
+import 'package:t_photos/ui/views/timeline/timeline_selection_floating_button.dart';
 import 'package:t_photos/ui_models/photo_list_item.dart';
 
 class TimelineScreen extends StatefulWidget {
@@ -88,6 +89,20 @@ class _TimeLineScreenState extends State<TimelineScreen> {
                     primary: false,
                     slivers: _getSlivers(state as TimelineState),
                   ),
+                  floatingActionButton: (state is TimelineStatePhotoSelected)
+                      ? SelectedPhotosMenu(
+                          count: state.selectedPhotos.length,
+                          onCancel: () {
+                            _bloc.add(TimelineEventOnCancelSelections(
+                                state.loadedList));
+                          },
+                          onDelete: () {
+                            _bloc.add(TimelineEventDeletePicture(
+                                photoItemsToDelete: state.selectedPhotos,
+                                loadedList: state.loadedList));
+                          },
+                        )
+                      : null,
                 );
               },
             ),
